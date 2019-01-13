@@ -5,17 +5,17 @@
 #include <Arduino.h>
 #include <ESP8266WiFi.h>
 #include <ESP8266WiFiMulti.h>
-#include <WebSocketsClient.h> //  https://github.com/kakopappa/sinric/wiki/How-to-add-dependency-libraries
-#include <ArduinoJson.h> // https://github.com/kakopappa/sinric/wiki/How-to-add-dependency-libraries
+#include <WebSocketsClient.h>
+#include <ArduinoJson.h> 
 #include <StreamString.h>
 
 ESP8266WiFiMulti WiFiMulti;
 WebSocketsClient webSocket;
 WiFiClient client;
 
-#define MyApiKey "535a5fc4-e6c7-47e1-b53f-49f614298fad" // TODO: Change to your sinric API Key. Your API Key is displayed on sinric.com dashboard
-#define MySSID "X-men trainee" // TODO: Change to your Wifi network SSID
-#define MyWifiPassword "Qwertyuiop69" // TODO: Change to your Wifi network password
+#define MyApiKey "Your Api Key Here" // Your API Key is displayed on sinric.com dashboard
+#define MySSID "Your Wifi SSID here" // Change to your Wifi network SSID
+#define MyWifiPassword "Your Wifi password here" // Change to your Wifi network password
 
 #define HEARTBEAT_INTERVAL 300000 // 5 Minutes 
 
