@@ -1,7 +1,3 @@
-/*
- Version 0.3 - March 06 2018
-*/ 
-
 #include <Arduino.h>
 #include <ESP8266WiFi.h>
 #include <ESP8266WiFiMulti.h>
