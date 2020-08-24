@@ -5,13 +5,33 @@
 #include <ArduinoJson.h> 
 #include <StreamString.h>
 
+#include <EEPROM.h>
+
+int switch_status_1;
+int switch_status_2;
+int switch_status_3;
+int switch_status_4;
+int switch_status_5;
+int switch_status_6;
+int switch_status_7;
+int switch_status_8;
+
+int switch_address_1 = 0;
+int switch_address_2 = 4;
+int switch_address_3 = 8;
+int switch_address_4 = 12;
+int switch_address_5 = 16;
+int switch_address_6 = 20;
+int switch_address_7 = 24;
+int switch_address_8 = 28;
+
 ESP8266WiFiMulti WiFiMulti;
 WebSocketsClient webSocket;
 WiFiClient client;
 
-#define MyApiKey "Your Api Key Here" // Your API Key is displayed on sinric.com dashboard
-#define MySSID "Your Wifi SSID here" // Change to your Wifi network SSID
-#define MyWifiPassword "Your Wifi password here" // Change to your Wifi network password
+#define MyApiKey "535a5fc4-e6c7-47e1-b53f-49f614298fad" // Your API Key is displayed on sinric.com dashboard
+#define MySSID "X-men trainee" // Change to your Wifi network SSID
+#define MyWifiPassword "Qwertyuiop69" // Change to your Wifi network password
 
 #define HEARTBEAT_INTERVAL 300000 // 5 Minutes 
 
@@ -41,6 +61,8 @@ void turnOn(String deviceId) {
      Serial.println("Switch 1 ON");
           // Serial.print("Value : ");
            //Serial.println(a);
+      EEPROM_Write(1, switch_address_1 );
+     
    }
    if (deviceId == "5c2e7202e520ad6f0117147f") // Device ID of second device
    { 
@@ -50,6 +72,7 @@ void turnOn(String deviceId) {
      Serial.println("Switch 2 ON");
            //Serial.print("Value : ");
            //Serial.println(b);
+     EEPROM_Write(1, switch_address_2 );
   }
    if (deviceId == "5c2e720fe520ad6f01171481") // Device ID of third device
    { 
@@ -59,6 +82,7 @@ void turnOn(String deviceId) {
      Serial.println("Switch 3 ON");
             //Serial.print("Value : ");
             //Serial.println(c);
+     EEPROM_Write(1, switch_address_3 );
   }
    if (deviceId == "5c2e721ee520ad6f01171483") // Device ID of fourth device
    { 
@@ -68,6 +92,8 @@ void turnOn(String deviceId) {
      Serial.println("Switch 4 ON");
             //Serial.print("Value : ");
             //Serial.println(d);
+     EEPROM_Write(1, switch_address_4 );
+       
   }
    if (deviceId == "5c2e722de520ad6f01171485") // Device ID of fifth device
    { 
@@ -77,6 +103,7 @@ void turnOn(String deviceId) {
      Serial.println("Switch 5 ON");
             //Serial.print("Value : ");
             //Serial.println(e);
+     EEPROM_Write(1, switch_address_5 );
   }
    if (deviceId == "5c2e7239e520ad6f01171487") // Device ID of sixth device
    { 
@@ -86,6 +113,7 @@ void turnOn(String deviceId) {
      Serial.println("Switch 6 ON");
             //Serial.print("Value : ");
             //Serial.println(f);
+     EEPROM_Write(1, switch_address_6 );
   }
    if (deviceId == "5c2e7247e520ad6f01171489") // Device ID of seventh device
    { 
@@ -95,6 +123,7 @@ void turnOn(String deviceId) {
      Serial.println("Switch 7 ON");
             //Serial.print("Value : ");
             //Serial.println(g);
+    EEPROM_Write(1, switch_address_7 );
   }
    if (deviceId == "5c2e7252e520ad6f0117148b") // Device ID of eighth device
    { 
@@ -104,6 +133,7 @@ void turnOn(String deviceId) {
      Serial.println("Switch 8 ON");
             //Serial.print("Value : ");
             //Serial.println(h);
+     EEPROM_Write(1, switch_address_8 );
   }
   else {
     Serial.print("Turn on for unknown device id: ");
@@ -120,6 +150,7 @@ void turnOff(String deviceId) {
      Serial.println("Switch 1 OFF");
             //Serial.print("Value : ");
             //Serial.println(a);
+     EEPROM_Write(0, switch_address_1 );
    }
    if (deviceId == "5c2e7202e520ad6f0117147f") // Device ID of second device
    { 
@@ -129,6 +160,7 @@ void turnOff(String deviceId) {
      Serial.println("Switch 2 OFF");
             //Serial.print("Value : ");
             //Serial.println(b);
+     EEPROM_Write(0, switch_address_2 );
   }
    if (deviceId == "5c2e720fe520ad6f01171481") // Device ID of third device
    { 
@@ -138,6 +170,7 @@ void turnOff(String deviceId) {
      Serial.println("Switch 3 OFF");
             //Serial.print("Value : ");
             //Serial.println(c);
+     EEPROM_Write(0, switch_address_3 );
   }
    if (deviceId == "5c2e721ee520ad6f01171483") // Device ID of fourth device
    { 
@@ -147,6 +180,7 @@ void turnOff(String deviceId) {
      Serial.println("Switch 4 OFF");
             //Serial.print("Value : ");
             //Serial.println(d);
+     EEPROM_Write(0, switch_address_4 );
   }
    if (deviceId == "5c2e722de520ad6f01171485") // Device ID of fifth device
    { 
@@ -156,6 +190,7 @@ void turnOff(String deviceId) {
      Serial.println("Switch 5 OFF");
             //Serial.print("Value : ");
             //Serial.println(e);
+     EEPROM_Write(0, switch_address_5 );
   }
    if (deviceId == "5c2e7239e520ad6f01171487") // Device ID of sixth device
    { 
@@ -165,6 +200,7 @@ void turnOff(String deviceId) {
      Serial.println("Switch 6 OFF");
             //Serial.print("Value : ");
             //Serial.println(f);
+     EEPROM_Write(0, switch_address_6 );
   }
    if (deviceId == "5c2e7247e520ad6f01171489") // Device ID of seventh device
    { 
@@ -174,6 +210,7 @@ void turnOff(String deviceId) {
      Serial.println("Switch 7 OFF");
             //Serial.print("Value : ");
             //Serial.println(g);
+     EEPROM_Write(0, switch_address_7 );
   }
   if (deviceId == "5c2e7252e520ad6f0117148b") // Device ID of eighth device
    { 
@@ -183,6 +220,7 @@ void turnOff(String deviceId) {
      Serial.println("Switch 8 OFF");
             //Serial.print("Value : ");
             //Serial.println(h);
+     EEPROM_Write(0, switch_address_8 );
   }
   else {
      Serial.print("Turn off for unknown device id: ");
@@ -242,6 +280,7 @@ void webSocketEvent(WStype_t type, uint8_t * payload, size_t length) {
 }
 
 void setup() {
+  EEPROM.begin(512);
   Serial.begin(115200);
 
   pinMode(a,OUTPUT);
@@ -253,14 +292,7 @@ void setup() {
   pinMode(g,OUTPUT);
   pinMode(h,OUTPUT);
   
-  digitalWrite(a,HIGH);
-  digitalWrite(b,HIGH);
-  digitalWrite(c,HIGH);
-  digitalWrite(d,HIGH);
-  digitalWrite(e,HIGH);
-  digitalWrite(f,HIGH);
-  digitalWrite(g,HIGH);
-  digitalWrite(h,HIGH);
+  Switch_Status();
   
   WiFiMulti.addAP(MySSID, MyWifiPassword);
   Serial.println();
@@ -341,4 +373,149 @@ void setTargetTemperatureOnServer(String deviceId, String value, String scale) {
   root.printTo(databuf);
   
   webSocket.sendTXT(databuf);
+}
+void EEPROM_Write(int pin_status, int switch_address)
+{
+  int a=pin_status;
+  int eeAddress = switch_address;
+  EEPROM.put(eeAddress, a);
+  eeAddress += sizeof(int);
+
+  EEPROM.put(eeAddress, a);
+  Serial.println("Written");
+  EEPROM.commit();
+}
+
+int EEPROM_Read(int address)
+{
+  int status_x;
+  int eeAddress = address;
+  EEPROM.get(eeAddress, status_x);
+  EEPROM.commit();
+  return status_x;
+}
+void Switch_Status()
+{
+
+ switch_status_1 = EEPROM_Read(switch_address_1);
+ Serial.print("Switch Status: ");
+ Serial.println(switch_status_1);
+   
+ switch_status_2 = EEPROM_Read(switch_address_2);
+ Serial.print("Switch Status: ");
+ Serial.println(switch_status_2);
+
+ switch_status_3 = EEPROM_Read(switch_address_3);
+ Serial.print("Switch Status: ");
+ Serial.println(switch_status_3);
+
+ switch_status_4 = EEPROM_Read(switch_address_4);
+ Serial.print("Switch Status: ");
+ Serial.println(switch_status_4);
+
+ switch_status_5 = EEPROM_Read(switch_address_5);
+ Serial.print("Switch Status: ");
+ Serial.println(switch_status_5);
+
+ switch_status_6 = EEPROM_Read(switch_address_6);
+ Serial.print("Switch Status: ");
+ Serial.println(switch_status_6);
+
+ switch_status_7 = EEPROM_Read(switch_address_7);
+ Serial.print("Switch Status: ");
+ Serial.println(switch_status_7);
+
+ switch_status_8 = EEPROM_Read(switch_address_8);
+ Serial.print("Switch Status: ");
+ Serial.println(switch_status_8);
+
+ if(switch_status_1==1)
+ {
+  digitalWrite(a, LOW);
+  Serial.println("Switch 1 is ON");
+ } 
+ else if(switch_status_1==0)
+ {
+   digitalWrite(a, HIGH);
+   Serial.println("Switch 1 is OFF");
+ }
+
+ if(switch_status_2==1)
+ {
+  digitalWrite(b, LOW);
+  Serial.println("Switch 2 is ON");
+ } 
+ else if(switch_status_2==0)
+ {
+   digitalWrite(b, HIGH);
+   Serial.println("Switch 2 is OFF");
+ }
+
+ if(switch_status_3==1)
+ {
+  digitalWrite(c, LOW);
+  Serial.println("Switch 3 is ON");
+ } 
+ else if(switch_status_3==0)
+ {
+   digitalWrite(c, HIGH);
+   Serial.println("Switch 3 is OFF");
+ }
+
+ if(switch_status_4==1)
+ {
+  digitalWrite(d, LOW);
+  Serial.println("Switch 4 is ON");
+ } 
+ else if(switch_status_4==0)
+ {
+   digitalWrite(d, HIGH);
+   Serial.println("Switch 4 is OFF");
+ }
+
+ if(switch_status_5==1)
+ {
+  digitalWrite(e, LOW);
+  Serial.println("Switch 5 is ON");
+ } 
+ else if(switch_status_5==0)
+ {
+   digitalWrite(e, HIGH);
+   Serial.println("Switch 5 is OFF");
+ }
+
+
+ if(switch_status_6==1)
+ {
+  digitalWrite(f, LOW);
+  Serial.println("Switch 6 is ON");
+ } 
+ else if(switch_status_6==0)
+ {
+   digitalWrite(f, HIGH);
+   Serial.println("Switch 6 is OFF");
+ }
+
+ if(switch_status_7==1)
+ {
+  digitalWrite(g, LOW);
+  Serial.println("Switch 7 is ON");
+ } 
+ else if(switch_status_7==0)
+ {
+   digitalWrite(g, HIGH);
+   Serial.println("Switch 7 is OFF");
+ }
+
+ if(switch_status_8==1)
+ {
+  digitalWrite(h, LOW);
+  Serial.println("Switch 8 is ON");
+ } 
+ else if(switch_status_8==0)
+ {
+   digitalWrite(h, HIGH);
+   Serial.println("Switch 8 is OFF");
+ }
+  
 }
